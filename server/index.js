@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,7 +27,6 @@ app.get('/getTitle/:id', async (req, res) => {
 
 // POST Title Banner
 app.post('/postTitle', async (req, res) => {
-
   await axios.post(`http://localhost:3001/postTitle`, {
     title: req.body.title,
     enrolled: req.body.enrolled,

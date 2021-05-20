@@ -7,12 +7,12 @@ export const options = {
       // rate: 1,
       // rate: 10,
       // rate: 100,
-      rate: 1000,
+      rate: 500,
       timeUnit: '1s', // x iterations per second, i.e. 1000 RPS (rate)
       duration: '30s',
       preAllocatedVUs: 100, // how large the initial pool of VUs would be
       // maxVUs: 200, // if the preAllocatedVUs are not enough, we can initialize more
-      maxVUs: 500, // 1000 RPS
+      maxVUs: 400, // 1000 RPS
     },
   },
 };
