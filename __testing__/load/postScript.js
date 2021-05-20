@@ -11,19 +11,19 @@ export const options = {
       timeUnit: '1s', // x iterations per second, i.e. 1000 RPS (rate)
       duration: '30s',
       preAllocatedVUs: 100, // how large the initial pool of VUs would be
-      maxVUs: 200, // if the preAllocatedVUs are not enough, we can initialize more
-      // maxVUs: 400, // 1000 RPS
+      // maxVUs: 200, // if the preAllocatedVUs are not enough, we can initialize more
+      maxVUs: 500, // 1000 RPS
     },
   },
 };
 
 export default () => {
-  const url = '';
+  const url = 'http://localhost:3000/postTitle';
 
   const payload = JSON.stringify({
     title: 'Blue Banana',
     enrolled: 100,
-    reviewcounts: '30',
+    reviewcounts: 30,
     stars: '4.5',
   });
 
