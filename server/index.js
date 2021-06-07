@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const app = express();
+const { requests } = require('./helpers/requests');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
