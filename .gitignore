@@ -35,3 +35,6 @@ about/
 node_modules
 newrelic.js
 newrelic_agent.log
+__testing__
+*.pem
+login.sh

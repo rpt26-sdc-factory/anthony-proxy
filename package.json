@@ -7,7 +7,9 @@
     "dev": "nodemon ./server/index.js",
     "start": "node ./server/index.js",
     "k6:get": "k6 run __testing__/load/getScript.js",
-    "k6:post": "k6 run __testing__/load/postScript.js"
+    "k6:post": "k6 run __testing__/load/postScript.js",
+    "docker:build": "docker build -t anthonysim/sdc-proxy .",
+    "docker:run": "docker run --restart=always -dp 3000:3000 anthonysim/sdc-proxy"
   },
   "repository": {
     "type": "git",
