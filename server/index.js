@@ -15,7 +15,7 @@ app.get('/:id', (req, res) => {
 
 // GET Title Banner
 app.get('/getTitle/:id', async (req, res) => {
-  await axios.get(`http://localhost:3001/getTitle/${req.params.id}`)
+  await axios.get(`http://54.210.167.109:3001/getTitle/${req.params.id}`)
     .then((response) => {
       res.send(response.data);
     })
@@ -27,7 +27,7 @@ app.get('/getTitle/:id', async (req, res) => {
 
 // POST Title Banner
 app.post('/postTitle', async (req, res) => {
-  await axios.post(`http://localhost:3001/postTitle`, {
+  await axios.post(`http://54.210.167.109:3001/postTitle`, {
     title: req.body.title,
     enrolled: req.body.enrolled,
     reviewcounts: req.body.reviewcounts,
@@ -44,7 +44,7 @@ app.post('/postTitle', async (req, res) => {
 
 // PUT Title Banner
 app.put('/updateTitle/:id', async (req, res) => {
-  await axios.put(`http://localhost:3001/updateTitle/${req.params.id}`, {
+  await axios.put(`http://54.210.167.109:3001/updateTitle/${req.params.id}`, {
     title: req.body.title,
   })
     .then((response) => {
@@ -58,7 +58,7 @@ app.put('/updateTitle/:id', async (req, res) => {
 
 // DELETE Title Banner
 app.delete('/deleteTitle/:id', async (req, res) => {
-  await axios.delete(`http://localhost:3001/deleteTitle/${req.params.id}`)
+  await axios.delete(`http://54.210.167.109:3001/deleteTitle/${req.params.id}`)
     .then((response) => {
       res.send(response.data);
     })
