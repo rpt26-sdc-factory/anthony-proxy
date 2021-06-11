@@ -14,9 +14,10 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 
 
 // LOADER IO
-app.get(`/${process.env.LOADERIO}`, (req, res) => {
+const loaderIO_URL = `/${process.env.LOADERIO}` || '';
+app.get(loaderIO_URL, (req, res) => {
   try {
-    res.sendFile(path.resolve(__dirname, '../loader-io.txt'));
+    res.sendFile(path.resolve(__dirname, `../loader-io.txt`));
   } catch (err) {
     console.error(err);
   }
