@@ -5,19 +5,13 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const app = express();
 
-const { pool } = require('../db/db');
-
 const dotenv = require('dotenv');
-dotenv.config({ path: 'config/config.env' });
+dotenv.config({ path: path.resolve(__dirname, '../config/config.env') });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-// React app
-app.get('/:id', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
-});
 
 // LOADER IO
 app.get(`/${process.env.LOADERIO}`, (req, res) => {
@@ -26,6 +20,11 @@ app.get(`/${process.env.LOADERIO}`, (req, res) => {
   } catch (err) {
     console.error(err);
   }
+});
+
+// React app
+app.get('/:id', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 
 // GET Title Banner
@@ -50,7 +49,8 @@ app.post('/postTitle', async (req, res) => {
     offeredby: req.body.offeredby
   })
     .then((response) => {
-      res.send(response.data);
+      console.log(response.config.data);
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.log('Error with POST request to server: titles', err.address);
@@ -84,21 +84,6 @@ app.delete('/deleteTitle/:id', async (req, res) => {
     });
 });
 
-
-// Server Connection
-pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('Error acquiring client', err.stack);
-  }
-  client.query('SELECT NOW()', (err, result) => {
-    release();
-    if (err) {
-      return console.error('Error executing query', err.stack);
-    }
-    console.log('POSTGRES connected:', result.rows);
-    console.log('\n');
-  });
-});
 
 // Server Connection
 const PORT = 3000;
