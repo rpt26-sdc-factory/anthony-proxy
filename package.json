@@ -9,7 +9,7 @@
     "k6:get": "k6 run __testing__/load/getScript.js",
     "k6:post": "k6 run __testing__/load/postScript.js",
     "docker:build": "docker build -t anthonysim/sdc-proxy .",
-    "docker:run": "docker run --restart=always -dp 3000:3000 anthonysim/sdc-proxy"
+    "docker:run": "docker run --restart=always --log-opt max-size=10m --log-opt max-file=5 -dp 3000:3000 anthonysim/sdc-proxy"
   },
   "repository": {
     "type": "git",
