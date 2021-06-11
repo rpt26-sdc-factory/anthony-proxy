@@ -5,12 +5,27 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const app = express();
 
+const { pool } = require('../db/db');
+
+const dotenv = require('dotenv');
+dotenv.config({ path: 'config/config.env' });
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../public')));
 
+// React app
 app.get('/:id', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+});
+
+// LOADER IO
+app.get(`/${process.env.LOADERIO}`, (req, res) => {
+  try {
+    res.sendFile(path.resolve(__dirname, '../loader-io.txt'));
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 // GET Title Banner
@@ -32,6 +47,7 @@ app.post('/postTitle', async (req, res) => {
     enrolled: req.body.enrolled,
     reviewcounts: req.body.reviewcounts,
     stars: req.body.stars,
+    offeredby: req.body.offeredby
   })
     .then((response) => {
       res.send(response.data);
@@ -68,6 +84,21 @@ app.delete('/deleteTitle/:id', async (req, res) => {
     });
 });
 
+
+// Server Connection
+pool.connect((err, client, release) => {
+  if (err) {
+    return console.error('Error acquiring client', err.stack);
+  }
+  client.query('SELECT NOW()', (err, result) => {
+    release();
+    if (err) {
+      return console.error('Error executing query', err.stack);
+    }
+    console.log('POSTGRES connected:', result.rows);
+    console.log('\n');
+  });
+});
 
 // Server Connection
 const PORT = 3000;

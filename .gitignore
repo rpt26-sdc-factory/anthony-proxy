@@ -38,3 +38,4 @@ newrelic_agent.log
 *.pem
 login.sh
 config
+loader-io.txt
