@@ -9,7 +9,8 @@
     "k6:get": "k6 run __testing__/load/getScript.js",
     "k6:post": "k6 run __testing__/load/postScript.js",
     "docker:build": "docker build -t anthonysim/sdc-proxy .",
-    "docker:run": "docker run --restart=always --log-opt max-size=10m --log-opt max-file=5 -dp 3000:3000 anthonysim/sdc-proxy"
+    "docker:run": "docker run --restart=always --log-opt max-size=10m --log-opt max-file=5 -dp 3000:3000 anthonysim/sdc-proxy",
+    "pm2:start": "pm2 start ./server/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,8 @@
     "mongoose": "^5.12.1",
     "morgan": "^1.10.0",
     "newrelic": "^7.4.0",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "pm2": "^5.1.0"
   },
   "devDependencies": {
     "dotenv": "^8.6.0",
