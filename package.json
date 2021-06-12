@@ -10,7 +10,10 @@
     "k6:post": "k6 run __testing__/load/postScript.js",
     "docker:build": "docker build -t anthonysim/sdc-proxy .",
     "docker:run": "docker run --restart=always --log-opt max-size=10m --log-opt max-file=5 -dp 3000:3000 anthonysim/sdc-proxy",
-    "pm2:start": "pm2 start ./server/index.js"
+    "pm2:start": "pm2 start ./server/index.js --name sdc-proxy",
+    "pm2:restart": "pm2 restart 0",
+    "pm2:list": "pm2 list",
+    "pm2:stop": "pm2 stop all"
   },
   "repository": {
     "type": "git",
